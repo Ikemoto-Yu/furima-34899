@@ -11,7 +11,7 @@
 |last_name       |string| null: false        |
 |first_name_kana |string| null: false        |
 |last_name_kana  |string| null: false        |
-|birthday_id     | date | null: false        |
+|birthday        | date | null: false        |
 
 ### Association
 
@@ -36,19 +36,6 @@
 
 - belongs_to :user
 - has_one :purchase_admin
-
-## commentテーブル
-
-|      Column       |      Type     |          Option         |
-|-------------------|---------------|-------------------------|
-| text              | text          | null: false             |
-| user_id           | references    | null: false, foreign_key: true|
-| item_id           | references    | null: false, foreign_key: true|
-
-### Association
-
-- belongs_to :user
-- belongs_to :item
 
 ## purchaseテーブル
 
