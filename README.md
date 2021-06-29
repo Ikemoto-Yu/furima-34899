@@ -19,7 +19,6 @@
 ### Association
 
 - has_many :items
-- has_many :comments
 - has_many :purchases
 
 ## itemテーブル
@@ -33,7 +32,7 @@
 | delivery_style_id        | integer | null: false    |
 | delivery_local_id        | integer  | null: false    |
 | delivery_date_id         | integer  | null: false    |
-| item_price            | string | null: false    |
+| item_price            | integer | null: false    |
 | user_id               | references | null: false, foreign_key: true |
 
 ### Association
@@ -59,15 +58,13 @@
 
 |       Column      |     Type    |                 Option                |
 |-------------------|-------------|---------------------------------------|
-|post_number_front  | integer     | null: false
-|post_number_latter | integer     | null: false                           |
+|post_number        | string      | null: false                           |
 |delivery_local_id      | integer     | null: false                           |
 |local_position_town| string      | null: false                           |
 |local_address      | string      | null: false                           |
 |building_name      | string      |                                       |
 |phone_number       | string      | null: false                           |
-|user_id            | references  | null: false, foreign_key: true        |
-|item_id            | references  | null: false, foreign_key: true        |
+
 
 ### Association
 
