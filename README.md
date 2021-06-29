@@ -52,7 +52,7 @@
 
 ### Association
 
-- has_one :purchase_admin
+- belongs_to :purchase_admin
 
 ## purchase_admin
 
