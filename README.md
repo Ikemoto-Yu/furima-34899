@@ -11,10 +11,7 @@
 |last_name       |string| null: false        |
 |first_name_kana |string| null: false        |
 |last_name_kana  |string| null: false        |
-|birthday_year_id   |integer| null: false       |
-|birthday_month_id  |integer| null: false       |
-|birthday_date_id   |integer| null: false       |
-
+|birthday_id     | date | null: false        |
 
 ### Association
 
@@ -33,13 +30,15 @@
 | delivery_local_id        | integer  | null: false    |
 | delivery_date_id         | integer  | null: false    |
 | item_price            | integer | null: false    |
-| user_id               | references | null: false, foreign_key: true |
+| user                  | references | null: false, foreign_key: true |
+|purchase_admin         | references | null: false, foreign_key: true |
+|purchase               | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :comments
 - has_one :purchase
+- has_one :purchase_admin
 
 ## commentテーブル
 
@@ -64,22 +63,24 @@
 |local_address      | string      | null: false                           |
 |building_name      | string      |                                       |
 |phone_number       | string      | null: false                           |
+| purchase_admin        | references | null: false, foreign_key: true |
 
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
+- has_one :purchase_admin
 
 ## purchase_admin
 
 |   Column        |    Type       |            Option            |
 |-----------------|---------------|------------------------------|
-|user_id          |references     |  null: false, foreign_key: true |
-|item_id          |references     |  null: false, foreign_key: true |
+|user             |references     |  null: false, foreign_key: true |
+|item             |references     |  null: false, foreign_key: true |
+|purchase         | references    | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
+- belongs_to :purchase
 
