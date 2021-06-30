@@ -1,24 +1,69 @@
-# README
+#　テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+｜     Column    | Type |      Options       |
+｜---------------|------|--------------------|
+｜nickname       |string| null: false        |
+｜email          |string| null: false, unique: true        |
+|encrypted_password |string| null: false        |
+|first_name      |string| null: false        |
+|last_name       |string| null: false        |
+|first_name_kana |string| null: false        |
+|last_name_kana  |string| null: false        |
+|birthday        | date | null: false        |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :purchases_admins
 
-* Configuration
+## itemsテーブル
 
-* Database creation
+|        Column         | Type   |     Option     |
+|-----------------------|--------|----------------|
+| name             | string | null: false    |
+| info             | text   | null: false    |
+| category_id           | integer | null: false    |
+| appearance_id            | integer  | null: false    |
+| delivery_style_id        | integer | null: false    |
+| delivery_local_id        | integer  | null: false    |
+| delivery_date_id         | integer  | null: false    |
+| price            | integer | null: false    |
+| user                  | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_one :purchase_admin
 
-* Services (job queues, cache servers, search engines, etc.)
+## purchasesテーブル
 
-* Deployment instructions
+|       Column      |     Type    |                 Option                |
+|-------------------|-------------|---------------------------------------|
+|post_number        | string      | null: false                           |
+|delivery_local_id      | integer     | null: false                           |
+|local_position_town| string      | null: false                           |
+|local_address      | string      | null: false                           |
+|building_name      | string      |                                       |
+|phone_number       | string      | null: false                           |
+| purchase_admin        | references | null: false, foreign_key: true |
 
-* ...
+
+### Association
+
+- belongs_to :purchase_admin
+
+## purchase_admins
+
+|   Column        |    Type       |            Option            |
+|-----------------|---------------|------------------------------|
+|user             |references     |  null: false, foreign_key: true |
+|item             |references     |  null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one :purchase
+
