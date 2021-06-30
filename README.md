@@ -1,6 +1,6 @@
 #　テーブル設計
 
-## userテーブル
+## usersテーブル
 
 ｜     Column    | Type |      Options       |
 ｜---------------|------|--------------------|
@@ -18,18 +18,18 @@
 - has_many :items
 - has_many :purchases_admins
 
-## itemテーブル
+## itemsテーブル
 
 |        Column         | Type   |     Option     |
 |-----------------------|--------|----------------|
-| item_name             | string | null: false    |
-| item_text             | text   | null: false    |
+| name             | string | null: false    |
+| info             | text   | null: false    |
 | category_id           | integer | null: false    |
 | appearance_id            | integer  | null: false    |
 | delivery_style_id        | integer | null: false    |
 | delivery_local_id        | integer  | null: false    |
 | delivery_date_id         | integer  | null: false    |
-| item_price            | integer | null: false    |
+| price            | integer | null: false    |
 | user                  | references | null: false, foreign_key: true |
 
 ### Association
@@ -37,7 +37,7 @@
 - belongs_to :user
 - has_one :purchase_admin
 
-## purchaseテーブル
+## purchasesテーブル
 
 |       Column      |     Type    |                 Option                |
 |-------------------|-------------|---------------------------------------|
@@ -54,7 +54,7 @@
 
 - belongs_to :purchase_admin
 
-## purchase_admin
+## purchase_admins
 
 |   Column        |    Type       |            Option            |
 |-----------------|---------------|------------------------------|
