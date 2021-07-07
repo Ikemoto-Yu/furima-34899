@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   validates :name
   validates :info
   validates :category_id , numericality: { other_than: 1, message: "can't be blank" } 
-  validates :appearance_id
+  validates :appearance_id , numericality: { other_than: 1, message: "can't be blank" } 
   validates :delivery_date_id
   validates :delivery_local_id
   validates :delivery_style_id
