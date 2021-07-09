@@ -2,14 +2,17 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   with_options presence: true do
+  validates :image
   validates :name
   validates :info
-  validates :category_id , numericality: { other_than: 1, message: "can't be blank" } 
-  validates :appearance_id , numericality: { other_than: 1, message: "can't be blank" } 
-  validates :delivery_date_id , numericality: { other_than: 1, message: "can't be blank" } 
-  validates :delivery_local_id , numericality: { other_than: 0, message: "can't be blank" } 
-  validates :delivery_style_id , numericality: { other_than: 1, message: "can't be blank" } 
-  validates :price
+    with_options numericality: { other_than: 1, message: "can't be blank" } do
+      validates :category_id
+      validates :appearance_id
+      validates :delivery_date_id
+      validates :delivery_local_id
+      validates :delivery_style_id
+    end
+  validates :price ,  inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
   end
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
