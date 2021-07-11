@@ -11,7 +11,7 @@ describe User do
       it '正しく入力する' do
         expect(@item).to be_valid
         end
-      it '販売価格が$300~$9,999,999まで' do
+      it '販売価格が¥300~¥9,999,999まで' do
         @item.price = 300
         expect(@item).to be_valid
         end
@@ -29,36 +29,36 @@ describe User do
         expect(@item.errors.full_messages).to include("Info can't be blank")
       end
       it 'カテゴリーが空白である' do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it '商品の状態が空白である' do
-        @item.appearance_id = '1'
+        @item.appearance_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Appearance can't be blank")
       end
       it '発送元の地域が空白である' do
-        @item.delivery_local_id = '1'
+        @item.delivery_local_id = 1
         @item.save
         expect(@item.errors.full_messages).to include("Delivery local can't be blank")
       end
       it '発送までの日数が空白である' do
-        @item.delivery_date_id = '1'
+        @item.delivery_date_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery date can't be blank")
       end
       it '価格が空白である' do
-        @item.price = ''
+        @item.price = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it '価格が$300未満である' do
+      it '価格が¥300未満である' do
         @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
-      it '価格が$10,000,000以上である' do
+      it '価格が¥10,000,000以上である' do
         @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
