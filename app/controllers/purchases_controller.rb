@@ -41,7 +41,8 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_index
-    unless @item.user.id == current_user.id && @item.purchase_admin.nil?
+    unless @item.user.id != current_user.id && @item.purchase_admin.nil?
+      binding.pry
       redirect_to root_path
     end
   end
