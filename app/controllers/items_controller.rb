@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :item_params_id, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
+  before_action :move_to_index_nil_item, only: [:edit]
 
 
   def index
@@ -51,7 +52,13 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    unless @item.user.id == current_user.id
+    unless @item.user.id == current_user.id 
+      redirect_to action: :index
+    end
+  end
+
+  def move_to_index_nil_item
+    unless  @item.purchase_admin.nil?
       redirect_to action: :index
     end
   end

@@ -8,7 +8,7 @@ class CreatePurchases < ActiveRecord::Migration[6.0]
       t.string       :local_position_town,   null: false
       t.integer      :delivery_local_id,     null: false
       t.string       :post_number,           null: false
-      #t.references   :purchase_admin,        null: false, foreign_key: true
+      t.references   :purchase_admin,        null: false, foreign_key: true
       t.timestamps
     end
   end
