@@ -56,7 +56,7 @@ RSpec.describe PurchasePurchaseAdmin, type: :model do
         expect(@purchase_purchase_admin.errors.full_messages).to include("Local position town can't be blank")
       end
       it 'delivery_local_idが選ばれていない' do
-        @purchase_purchase_admin.delivery_local_id = '1'
+        @purchase_purchase_admin.delivery_local_id = 1
         @purchase_purchase_admin.valid?
         expect(@purchase_purchase_admin.errors.full_messages).to include("Delivery local can't be blank")
       end
@@ -79,6 +79,21 @@ RSpec.describe PurchasePurchaseAdmin, type: :model do
         @purchase_purchase_admin.post_number = 'aiu-eoka'
         @purchase_purchase_admin.valid?
         expect(@purchase_purchase_admin.errors.full_messages).to include("Post number is invalid")
+      end
+      it 'user_idが空だと登録できない' do
+        @purchase_purchase_admin.user_id = nil
+        @purchase_purchase_admin.valid?
+        expect(@purchase_purchase_admin.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空だと登録できない' do
+        @purchase_purchase_admin.item_id = nil
+        @purchase_purchase_admin.valid?
+        expect(@purchase_purchase_admin.errors.full_messages).to include("Item can't be blank")
+      end
+      it '全角数字だと登録できない' do
+        @purchase_purchase_admin.phone_number = "１２３４５６７８９１２"
+        @purchase_purchase_admin.valid?
+        expect(@purchase_purchase_admin.errors.full_messages).to include("Phone number is invalid")
       end
     end
   end

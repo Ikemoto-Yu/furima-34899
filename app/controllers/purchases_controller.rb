@@ -4,13 +4,10 @@ class PurchasesController < ApplicationController
   before_action :move_to_index, only: [:index, :create]
 
   def index
-    @purchase_admin = PurchaseAdmin.find(params[:item_id])
-    @item = Item.find(params[:item_id])
     @purchase_purchase_admin = PurchasePurchaseAdmin.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase_purchase_admin = PurchasePurchaseAdmin.new(purchase_params)
     if @purchase_purchase_admin.valid?
       pay_item
@@ -32,7 +29,7 @@ class PurchasesController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_5d3c5b184d859d819d810f54"
+    Payjp.api_key =  ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
         amount: @item[:price],  # 商品の値段
         card: purchase_params[:token],    # カードトークン
@@ -42,7 +39,6 @@ class PurchasesController < ApplicationController
 
   def move_to_index
     unless @item.user.id != current_user.id && @item.purchase_admin.nil?
-      binding.pry
       redirect_to root_path
     end
   end

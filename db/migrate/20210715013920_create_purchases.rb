@@ -3,7 +3,7 @@ class CreatePurchases < ActiveRecord::Migration[6.0]
     create_table :purchases do |t|
 
       t.string       :phone_number,          null: false
-      t.string       :building_name,         null: false
+      t.string       :building_name
       t.string       :local_address,         null: false
       t.string       :local_position_town,   null: false
       t.integer      :delivery_local_id,     null: false
