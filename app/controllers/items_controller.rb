@@ -40,6 +40,10 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to action: :index
   end
+
+  def search
+    @items = Item.search(params[:keyword])
+  end
   
   private
 
