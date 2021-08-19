@@ -21,4 +21,11 @@ class Item < ApplicationRecord
   belongs_to :delivery_date
   belongs_to :delivery_style
   belongs_to :delivery_local
+  def self.search(search)
+    if search != ""
+      Item.where('name LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
 end
